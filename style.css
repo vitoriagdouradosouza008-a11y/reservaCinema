@@ -1,0 +1,115 @@
+/* ==========================================================================
+   ESTILOS DO CORPO DA PÁGINA (A tela inteira)
+   ========================================================================== */
+body { 
+    /* Define o tipo de letra do site. Se o computador não tiver Arial, usa qualquer uma sem serifa (sans-serif) */
+    font-family: Arial, sans-serif; 
+    
+    /* Centraliza todo o texto e elementos filhos horizontalmente no meio da página */
+    text-align: center; 
+    
+    /* Pinta o fundo da página inteira com um cinza bem clarinho (ajuda a não cansar a vista) */
+    background-color: #f4f4f4; 
+}
+
+/* ==========================================================================
+   ESTILO DO "ECRÃ" DO CINEMA (Aquela barra preta em cima)
+   ========================================================================== */
+.ecra { 
+    /* Define a largura exata da barra em pixels */
+    width: 300px; 
+    
+    /* Define a altura da barra */
+    height: 20px; 
+    
+    /* Cor de fundo cinza escuro (quase preto) */
+    background: #333; 
+    
+    /* Margem externa: 20px de espaço em cima/baixo e 'auto' nas laterais para centralizar a barra no meio da tela */
+    margin: 20px auto; 
+    
+    /* Cor do texto escrito dentro da barra ("ECRÃ DO CINEMA") */
+    color: white; 
+    
+    /* Arredonda levemente as pontinhas (cantos) do retângulo */
+    border-radius: 5px; 
+}
+
+/* ==========================================================================
+   CONTENTOR DO MAPA (A "caixa" invisível que segura todos os lugares)
+   ========================================================================== */
+#mapa-cinema { 
+    /* Ativa o poderoso CSS Grid! Transforma este contentor numa grelha invisível de linhas e colunas */
+    display: grid; 
+    
+    /* Garante que a grelha inteira fique centralizada no meio da página */
+    justify-content: center; 
+    
+    /* Define o espaço (buraco) entre os lugares. Dá 10px de distância de todos os lados entre os quadrados */
+    gap: 10px; 
+    
+    /* Dá um "empurrãozinho" de 20px para baixo, para não colar no ecrã do cinema */
+    margin-top: 20px; 
+}
+
+/* ==========================================================================
+   ESTILO BASE DE CADA LUGAR (A aparência padrão do quadradinho)
+   ========================================================================== */
+.lugar { 
+    /* Largura de cada lugar (cadeira) */
+    width: 40px; 
+    
+    /* Altura de cada lugar (criando um quadrado perfeito de 40x40) */
+    height: 40px; 
+    
+    /* Desenha uma linha fina, sólida e cinza ao redor do quadrado (uma borda) */
+    border: 1px solid #999; 
+    
+    /* Deixa os cantos do quadrado um pouco arredondados (fica mais bonito) */
+    border-radius: 5px; 
+    
+    /* Muda a seta do rato para aquela "mãozinha" de clicar quando passamos por cima */
+    cursor: pointer; 
+    
+    /* --- INÍCIO DO TRUQUE PARA CENTRALIZAR CONTEÚDO --- */
+    display: flex; /* Transforma o interior do quadrado num contentor flexível */
+    align-items: center; /* Centraliza o texto (se houver) verticalmente (cima/baixo) */
+    justify-content: center; /* Centraliza o texto (se houver) horizontalmente (esquerda/direita) */
+    /* --- FIM DO TRUQUE --- */
+
+    /* Diz ao navegador que qualquer mudança de estado (como passar o rato por cima e mudar de cor) deve demorar 0.3 segundos, criando uma animação suave */
+    transition: 0.3s; 
+}
+
+/* ==========================================================================
+   ESTADO: LUGAR LIVRE (Quando o valor na matriz JS é 0)
+   ========================================================================== */
+.livre { 
+    /* Pinta o fundo do quadrado de verde */
+    background-color: #2ecc71; 
+}
+
+/* ==========================================================================
+   ESTADO: LUGAR OCUPADO (Quando o valor na matriz JS é 1)
+   ========================================================================== */
+.ocupado { 
+    /* Pinta o fundo do quadrado de vermelho */
+    background-color: #e74c3c; 
+    
+    /* Muda a setinha do rato para um ícone de proibido (um círculo cortado), indicando que não pode clicar */
+    cursor: not-allowed; 
+}
+
+/* ==========================================================================
+   EFEITO DE PASSAR O RATO (HOVER) SOBRE UM LUGAR
+   ========================================================================== */
+/* Lê-se assim: Quando o rato passar por cima (:hover) de um elemento da classe .lugar, 
+   MAS SÓ SE ele NÃO TIVER (:not) a classe .ocupado... aplique os estilos abaixo: */
+.lugar:hover:not(.ocupado) { 
+    
+    /* Escurece um pouco o tom de verde para mostrar que está selecionado */
+    background-color: #27ae60; 
+    
+    /* Faz o quadrado "saltar" ou aumentar de tamanho em 10% (scale 1.1) */
+    transform: scale(1.1); 
+}
